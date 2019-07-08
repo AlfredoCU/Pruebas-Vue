@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no,
+    initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <!-- Link de bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <title> Mi rutina de ejercicios </title>
+  </head>
+
+  <body>
+    <div id="app" class="m-5 p-5 ">
+      <h1> {{ mensaje }} </h1>
+      <!-- No es necesario () cuando se trata de p. computadas -->
+      <h2> Invertido: {{ invertido }} </h2>
+      <input type="text" class="form-control" v-model="mensaje">
+      <hr>
+      <button class="btn btn-primary" @click="contador++"> + </button>
+      <button class="btn btn-danger" @click="contador--"> - </button>
+      <h3> {{ contador }} </h3>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" :style="{'width': contador+'%'}"
+          aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" :class="color">
+              {{contador}}%
+          </div>
+      </div>
+    </div>
+  </body>
+
+  <!-- Se utiliza vue -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- Despues mandamos nuestro propio código -->
+  <script src="../assets/scripts/propiedadesComputadas.js"></script>
+</html>
+
+<!--
+En lugar de una propiedad computada, podemos definir la misma función como un método.
+Desde el punto de vista del resultado, ambos enfoques son exactamente iguales.
+Sin embargo, la diferencia es que las propiedades computadas son cacheadas basándose
+en sus dependencias. Una propiedad computada solo se reevaluará cuando alguna de
+sus dependencias haya cambiado. Esto significa que mientras que message no haya
+cambiado, acceder reiteradamente a la propiedad computada reversedMessage
+devolverá inmediatamente el resultado computado previamente sin tener que
+ejecutar la función de nuevo.
+-->

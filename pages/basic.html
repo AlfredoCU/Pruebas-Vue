@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> Pruebas basicas con Vue </title>
+  </head>
+  <body>
+
+    <!-- Se crea un id para identificar el componente de vue -->
+    <div id="app">
+
+      <!-- Para mostrar un simple mensaje -->
+      {{ titulo }}
+
+      <ul>
+        <!-- Se crea un for para iterar la lista de frutas -->
+        <li v-for="fruta of frutas"> {{ fruta }} </li>
+        <!-- Se puede mandar objetos también -->
+        <li v-for="persona of personas">
+          {{ persona.nombre }} - {{ persona.edad }}
+          <!-- Se puede crear if -->
+          <span v-if="persona.edad < 18"> - Menor de edad </span>
+          <!-- Se pueden realizar operaciones matematicas -->
+          <button @click="persona.edad++"> + </button>
+          <button @click="persona.edad--"> - </button>
+        </li>
+      </ul>
+
+      <!-- Desde un input a un evento y a un procesamiento de datos
+      Se manda la info desde nuestro input hasta nuestro js
+      v-on:keyup o @keyup evento para el teclado -->
+      <input type="text" v-model="nuevaPersona" @keyup.enter="agregarPersona">
+      <!-- v-on:click es un evento y hace lo mismo -->
+      <button @click="agregarPersona"> Agregar </button>
+
+      <!-- Modificar valores -->
+      <ul>
+        <li v-for="persona of personas">
+          <!-- Usar v-model.number si es necesario para que cumpla la
+          validacion-->
+          <input type="number" v-model.number="persona.edad">
+        </li>
+      </ul>
+
+      <!-- Computed -->
+      <h4> TOTAL: {{ sumarEdades }} </h4>
+    </div>
+  </body>
+
+  <!-- Se utiliza vue -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- Despues mandamos nuestro propio código -->
+  <script src="../assets/scripts/basic.js"></script>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no,
+    initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <!-- Link de bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <title> Mi rutina de ejercicios </title>
+  </head>
+  <body>
+    <div id="app" class="conteiner m-5 card p-5">
+      <div class="">
+        <h1 class="h1"> {{ titulo }} </h1>
+        <input type="text" class="form-control my-3" v-model="nuevaRutina" @keyup.enter="agregarRutina">
+        <button type="button" class="btn btn-primary" @click="agregarRutina"> Guardar </button>
+      </div>
+      <div class="card p-5 mt-5 d-flex justify-content-center">
+        <ul class="list-group" v-for="(rutina, index) of rutinas">
+          <li class="list-group-item list-group-item bold d-flex
+          justify-content-between align-items-center"
+          :class="[rutina.hecho ? 'list-group-item-success' : 'list-group-item-danger']">
+            {{ index }} - {{ rutina.nombre }} - {{ rutina.hecho }}
+            <span>
+              <button type="button" class="btn btn-success" @click="editarRutina(index)"> Ok </button>
+              <button type="button" class="btn btn-danger" @click="eliminarRutina(index)"> Eliminar </button>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+
+  <!-- Se utiliza vue -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- Despues mandamos nuestro propio código -->
+  <script src="../assets/scripts/practica.js"></script>
+</html>
